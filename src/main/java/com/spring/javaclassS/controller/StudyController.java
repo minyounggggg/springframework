@@ -76,4 +76,17 @@ public class StudyController {
 		return map;
 	}
 	
+	@RequestMapping(value = "/ajax/ajaxTest4", method = RequestMethod.GET)
+	public String ajaxTest4Get() {
+		return "study/ajax/ajaxTest4";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/ajax/ajaxTest4", method = RequestMethod.POST)
+	public HashMap<Object, Object> ajaxTest4Post(String user) {
+		return studyService.getUserData(user);
+	}
+	
+	
+	
 }

@@ -1,6 +1,7 @@
 package com.spring.javaclassS.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 
@@ -122,6 +123,34 @@ public class StudyServiceImpl implements StudyService {
 		}
 		
 		return vos;
+	}
+
+	@Override
+	public HashMap<Object, Object> getUserData(String user) {
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		
+		if(user.equals("최민영")) {
+			map.put("mid", "cmy1234");
+			map.put("age", "20");
+			map.put("address", "청주");
+		}
+		else if(user.equals("김민영")) {
+			map.put("mid", "kmy5234");
+			map.put("age", "30");
+			map.put("address", "대전");
+		}
+		else if(user.equals("최영민")) {
+			map.put("mid", "cym6842");
+			map.put("age", "40");
+			map.put("address", "마산");
+		}
+		else if(user.equals("영민최")) {
+			map.put("mid", "ymc4321");
+			map.put("age", "50");
+			map.put("address", "울산");
+		}
+		
+		return map;
 	}
 
 	

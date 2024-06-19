@@ -64,7 +64,11 @@
 		<a href="${ctp}/study/ajax/ajaxTest3_1" class="btn btn-primary mr-2">String 배열</a>
 		<a href="${ctp}/study/ajax/ajaxTest3_2" class="btn btn-primary mr-2">ArrayList</a>
 		<a href="${ctp}/study/ajax/ajaxTest3_3" class="btn btn-primary mr-2">Map 형식</a>
-		<a href="${ctp}/study/ajax/ajaxTest3_3" class="btn btn-info mr-2">DB성명으로 자료검색</a>
+	</div>
+	<hr/>
+	<div>DB회원 정보 출력<br/>
+		<a href="${ctp}/study/ajax/ajaxTest4" class="btn btn-warning mr-2">DB성명으로 자료검색</a>
+		<a href="${ctp}/study/ajax/ajaxTest4_2" class="btn btn-warning mr-2">DB성명으로 자료검색22</a>
 	</div>
 </div>
 <p><br/></p>
