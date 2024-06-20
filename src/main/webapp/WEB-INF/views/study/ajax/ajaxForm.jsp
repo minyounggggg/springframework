@@ -42,6 +42,37 @@
 			});
 		}
 		
+		function fCheck1() {
+			let mid = document.getElementById("mid")value;
+			if(mid.trim() == ""){
+				alert("아이디를 입력하세요");
+				document.getElementById("mid").focus();
+				return false;
+			}
+			$.ajax({
+				url : "${ctp}/study/ajax/ajaxTest4-1",
+				type : "post",
+				data : {mid : mid},
+				success : function (vo) {
+					consol.log(vo);
+					let str = "<h5>vo로 전송된 자료 출력</h5>";
+					if(vo != ''){
+						str += '아이디 : ' + vo.mid +;'<br/>';
+						str += '성명 : ' + vo.name +;'<br/>';
+						str += '나이 : ' + vo.age +;'<br/>';
+						str += '주소 : ' + vo.address +;'<br/>';
+					}
+					else {
+						str += "찾고자하는 자료가 없습니다.";
+					}
+					$("#demo3").html(str);
+				},
+				error : function () {
+					alert("전송오류!!");
+				}
+			});
+		}
+		
 	</script>
 </head>
 <body>
@@ -64,8 +95,18 @@
 		<a href="${ctp}/study/ajax/ajaxTest3_1" class="btn btn-primary mr-2">String 배열</a>
 		<a href="${ctp}/study/ajax/ajaxTest3_2" class="btn btn-primary mr-2">ArrayList</a>
 		<a href="${ctp}/study/ajax/ajaxTest3_3" class="btn btn-primary mr-2">Map 형식</a>
-		<a href="${ctp}/study/ajax/ajaxTest3_3" class="btn btn-info mr-2">DB성명으로 자료검색</a>
 	</div>
+	<hr/>
+	<div>DB회원 정보 출력<br/>
+		<a href="${ctp}/study/ajax/ajaxTest4" class="btn btn-warning mr-2">DB성명으로 자료검색</a>
+		<a href="${ctp}/study/ajax/ajaxTest4_2" class="btn btn-warning mr-2">DB성명으로 자료검색22</a>
+	</div>
+	<hr/>
+	<div>아이디 : 
+		<input type="text" name="mid" id="mid" class="form-control mb-3" autofocus/>
+		<input type="button" value="아이디일치(vo)" onclick="fCheck1()" class="btn-btn-info mr-2" />
+	</div>
+	<div id="demo3"></div>
 </div>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

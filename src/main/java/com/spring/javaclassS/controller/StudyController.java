@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.javaclassS.service.DbtestService;
 import com.spring.javaclassS.service.StudyService;
+import com.spring.javaclassS.vo.UserVO;
 
 @Controller
 @RequestMapping("/study")
@@ -17,6 +19,10 @@ public class StudyController {
 	
 	@Autowired
 	StudyService studyService;
+	
+	@Autowired
+	DbtestService dbtestService;
+	
 
 	@RequestMapping(value = "/ajax/ajaxForm", method = RequestMethod.GET)
 	public String ajaxFormGet() {
@@ -75,5 +81,24 @@ public class StudyController {
 		
 		return map;
 	}
+	
+	@RequestMapping(value = "/ajax/ajaxTest4", method = RequestMethod.GET)
+	public String ajaxTest4Get() {
+		return "study/ajax/ajaxTest4";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/ajax/ajaxTest4", method = RequestMethod.POST)
+	public HashMap<Object, Object> ajaxTest4Post(String user) {
+		return studyService.getUserData(user);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/ajax/ajaxTest4-1", method = RequestMethod.POST)
+	public UserVO ajaxTest4_1Post(String mid) {
+		return studyService.getUserMidSearch(mid);
+	}
+	
+	
 	
 }
