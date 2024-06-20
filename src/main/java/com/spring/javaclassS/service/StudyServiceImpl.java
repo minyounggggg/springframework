@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.javaclassS.dao.StudyDAO;
+import com.spring.javaclassS.vo.CrimeVO;
 import com.spring.javaclassS.vo.UserVO;
 
 @Service
@@ -163,6 +164,16 @@ public class StudyServiceImpl implements StudyService {
 	@Override
 	public UserVO getUserMidSearch(String mid) {
 		return studyDAO.getUserMidSearch(mid);
+	}
+
+	@Override
+	public ArrayList<UserVO> getUserMidList(String mid) {
+		return studyDAO.getUserMidList(mid);
+	}
+
+	@Override
+	public void setSaveCrimeData(CrimeVO vo) {
+		studyDAO.setSaveCrimeData(vo);
 	}
 
 	

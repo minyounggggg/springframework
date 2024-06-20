@@ -5,12 +5,14 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.javaclassS.service.DbtestService;
 import com.spring.javaclassS.service.StudyService;
+import com.spring.javaclassS.vo.CrimeVO;
 import com.spring.javaclassS.vo.UserVO;
 
 @Controller
@@ -97,6 +99,35 @@ public class StudyController {
 	@RequestMapping(value = "/ajax/ajaxTest4-1", method = RequestMethod.POST)
 	public UserVO ajaxTest4_1Post(String mid) {
 		return studyService.getUserMidSearch(mid);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/ajax/ajaxTest4-2", method = RequestMethod.POST)
+	public ArrayList<UserVO> ajaxTest4_2Post(String mid) {
+		return studyService.getUserMidList(mid);
+	}
+	
+	@RequestMapping(value = "/restapi/restapi", method = RequestMethod.GET)
+	public String restapiGet() {
+		return "study/restapi/restapi";
+	}
+	
+	@RequestMapping(value = "/restapi/restapiTest1/{message}", method = RequestMethod.GET)
+	public String restapiTest1Get(@PathVariable String message) {
+		System.out.println("message : " + message);
+		return "message : " + message;
+	}
+	
+	@RequestMapping(value = "/restapi/restapiTest4", method = RequestMethod.GET)
+	public String restapiTest4Get() {
+		return "study/restapi/restapiTest4";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/restapi/saveCrimeData", method = RequestMethod.POST)
+	public void saveCrimeDataPost(CrimeVO vo) {
+		studyService.setSaveCrimeData(vo);
+		//System.out.println("vo : " + vo);
 	}
 	
 	
