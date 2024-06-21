@@ -6,6 +6,9 @@
 <head>
 	<meta charset="UTF-8">
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+	</style>
 	<script>
 		'use strict';
 		
@@ -36,16 +39,23 @@
 			let res = await response.json();		//await 이거 쓸라면 async이거 function앞에 붙여야함
 			console.log("res : ", res);
 			
-			let str = res.data.map((item, i) => [
-				(i+1) + "."
-				+ "발생년도 : " + item.발생년도 + "년"
-				+ ", 경찰서 : " + item.경찰서 + "건"
-				+ ", 강도 : " + item.강도 + "건"
-				+ ", 절도 : " + item.절도 + "건"
-				+ ", 살인 : " + item.살인 + "건"
-				+ "<br/>"
-			]);
+			let str0 = "<table class='table table-hover text-center'>"
+				+ "<tr class='table-secondary'><th>번호</th><th>발생년도</th><th>경찰서</th><th>강도</th><th>절도</th><th>살인</th><th>폭력</th></tr>";
 			
+			let str1 = res.data.map((item, i) => [
+				"<tr>"
+				+ "<td>" + (i+1) + "</td>"
+				+ "<td>" + item.발생년도 + "년 </td>"
+				+ "<td>" + item.경찰서 + "건 </td>"
+				+ "<td>" + item.강도 + "건 </td>"
+				+ "<td>" + item.절도 + "건 </td>"
+				+ "<td>" + item.살인 + "건 </td>"
+				+ "<td>" + item.폭력 + "건 </td>"
+				+ "</tr>"
+			]).join('');
+			str1 += "<tr><td colspan='7' class='m-0 p-0'></td></tr></table>";
+			
+			let str = str0 + str1;
 			$("#demo").html(str);
 		}
 		
@@ -112,6 +122,12 @@
 			}
 			alert(year + "년도 자료가 DB에 저장되었습니다.");
 		}
+		
+		function yearPoliceCheck() {
+			let year = $("#year").val();
+			let police = $("#police").val();
+		}
+		
 	</script>
 </head>
 <body>
@@ -135,7 +151,7 @@
 		</div>
 		<div>
 			경찰서 지역명 : 
-			<select name="police" onchange="policeCheck()">
+			<select name="police" id="police" onchange="policeCheck()">
 				<option>서울</option>
 				<option>경기</option>
 				<option>강원</option>
