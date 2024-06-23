@@ -3,7 +3,14 @@ package com.spring.javaclassS.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.javaclassS.service.DbtestService;
 import com.spring.javaclassS.service.StudyService;
 import com.spring.javaclassS.vo.CrimeVO;
+import com.spring.javaclassS.vo.MailVO;
 import com.spring.javaclassS.vo.UserVO;
 
 @Controller
@@ -24,6 +32,9 @@ public class StudyController {
 	
 	@Autowired
 	DbtestService dbtestService;
+	
+	@Autowired
+	JavaMailSender mailSender;
 	
 
 	@RequestMapping(value = "/ajax/ajaxForm", method = RequestMethod.GET)
@@ -128,6 +139,54 @@ public class StudyController {
 	public void saveCrimeDataPost(CrimeVO vo) {
 		studyService.setSaveCrimeData(vo);
 		//System.out.println("vo : " + vo);
+	}
+	
+	@RequestMapping(value = "/mail/mailForm", method = RequestMethod.GET)
+	public String mailFormGet() {
+		return "study/mail/mailForm";
+	}
+	
+	// 메일전송하기
+	@RequestMapping(value = "/mail/mailForm", method = RequestMethod.POST)
+	public String mailFormPost(MailVO vo, HttpServletRequest request) throws MessagingException {
+		String title = vo.getTitle();
+		String toMail = vo.getToMail();
+		String content = vo.getContent();
+		
+		// 메일 전송을 위한 객체 : MimeMessage(), MimeMessageHelper()
+		MimeMessage message = mailSender.createMimeMessage();
+		MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); //예외처리
+		
+		// 메일 보관함에 작성한 메세지들의 정보를 모두 저장시킨 후 작업 처리
+		messageHelper.setTo(toMail);		// 받는 사람 메일 주소
+		messageHelper.setSubject(title);	// 메일 제목
+		messageHelper.setText(content);		// 메일 내용
+		
+		// 메세지 보관함의 내용(content)에, 발신자의 필요한 정보를 추가로 담아서 전송처리한다.
+		content = content.replace("\n", "<br>");
+		content += "<br><hr><h3>javaclass에서 보냅니당</h3><hr><br>";
+		content += "<p><img src='cid:main.jpg' width='500px'></p>";		// cid:  -> 예약어, 첨부파일이 아닌 메일 본문에 이미지 집어넣기, 178번라인의ㅣ addInline로 보내줌
+		content += "<p>방문하기 : <a href='http://49.142.157.251:9090/javaclassJ15/'>javaclass</a></p>";
+		content += "<hr>";
+		messageHelper.setText(content, true);
+		
+		// 본문에 기재될 그림 파일의 경로를 별도로 표시시켜준다. 그런 후 다시 보관함에 저장한다.
+		// FileSystemResource file = new FileSystemResource("D:\\javaclass\\springframework\\works\\javaclassS\\src\\main\\webapp\\resources\\images\\20240621_111652_1.png");
+		
+		// request.getSession().getServletContext().getRealPath("/resources/images/main.jpg");
+		FileSystemResource file = new FileSystemResource(request.getSession().getServletContext().getRealPath("/resources/images/main.jpg"));
+		messageHelper.addInline("main.jpg", file);
+		
+		// 첨부파일 보내기
+		file = new FileSystemResource(request.getSession().getServletContext().getRealPath("/resources/images/chicago.jpg"));
+		messageHelper.addAttachment("chicago.jpg", file);
+		file = new FileSystemResource(request.getSession().getServletContext().getRealPath("/resources/images/sanfran.zip"));
+		messageHelper.addAttachment("sanfran.zip", file);
+		
+		// 메일 전송하기
+		mailSender.send(message);
+		
+		return "redirect:/message/mailSendOk";
 	}
 	
 	
