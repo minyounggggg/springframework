@@ -29,7 +29,7 @@
 					<div class="input-group">
 						<input type="Text" name="toMail" placeholder="받는사람의 메일주소를 입력해주세요" autofocus required class="form-control"/>
 						<div class="input-group-append">
-							<input type="button" value="주소록" onclick="jucorokCheck()" class="btn btn-success"/>
+							<input type="button" value="주소록" onclick="jucorokCheck()" class="btn btn-success" data-toggle="modal" data-target="#myModal"/>
 						</div>
 					</div>
 				</td>
@@ -52,6 +52,32 @@
 	</form>
 </div>
 <p><br/></p>
+
+<!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">회원 주소록</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>

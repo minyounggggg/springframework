@@ -27,13 +27,40 @@
   	
   	$(function() {
 		$("#searchPassword").hide();
+		$("#searchMid").hide();
 	});
+  	
+  	//아이디찾기
+  	function midSearch() {
+  		$("#searchMid").show();
+	}
+  	function findMid() {
+		let nickName = $("#nickSearch").val().trim();
+		let email = $("#emailSearch3").val().trim();
+		if(nickName == "" || email == ""){
+			alert ("가입시 등록한 닉네임과 메일주소를 입력해주세요.");
+			$("nickSearch").focus();
+			return false;
+		}
+		$.ajax({
+			url : "${ctp}/member/memberfindMid",
+			type : "post",
+			data : {nickName:nickName, email:email},
+			success : function res() {
+				if (res != "0") alert("회원님의 아이디가 입력하신 메일로 전송되었습니다.");
+				else alert("등록하신 정보가 일치하지 않습니다.\n확인 후 다시 시도해주세요.");
+			},
+			error : function () {
+				alert("전송오류 !!");
+			}
+		});
+	}
+  	
   	
   	//비밀번호찾기
   	function pwdSearch() {
   		$("#searchPassword").show();
 	}
-  	
   	// 임시비밀번호 등록시켜주기
   	function newPassword() {
 		let mid = $("#midSearch").val().trim();
@@ -100,6 +127,30 @@
     	</tr>
     </table>
   </form>
+  <div id="searchMid">
+  <hr/>
+  	<table class="table table-bordered p-0 text-center">
+  		<tr>
+  			<td colspan="2" class="text-center">
+  				<font size="4"><b>아이디 찾기</b></font>
+  				(가입시 입력한 닉네임과 메일 주소를 입력하세요.)
+  			</td>
+  		</tr>
+  		<tr>
+  			<th>닉네임</th>
+  			<td><input type="text" name="nickSearch" id="nickSearch" class="form-control" placeholder="닉네임을 입력하세요."/></td>
+  		</tr>
+  		<tr>
+  			<th>메일주소</th>
+  			<td><input type="text" name="emailSearch3" id="emailSearch3" class="form-control" placeholder="메일주소를 입력하세요."/></td>
+  		</tr>
+  		<tr>
+  			<td colspan="2" class="text-center">
+  				<input type="button" value="아이디 전송받기" onclick="findMid()"class="form-control" />
+  			</td>
+  		</tr>
+  	</table>
+  </div>
   <div id="searchPassword">
   <hr/>
   	<table class="table table-bordered p-0 text-center">
