@@ -38,7 +38,7 @@
   </c:if>
   <hr/>
   <div id="totalList">
-	  <h3 class="text-center">전체 회원 리스트</h3>
+	  <h3 class="text-center">전체 회원 리스트(총 ${fn:length(vos)}건)</h3>
 	  <table class="table table-hover text-center">
 	    <tr class="table-dark text-dark">
 	      <th>번호</th>
@@ -58,7 +58,7 @@
 	        <c:if test="${vo.userDel == 'OK'}"><c:set var="active" value="탈퇴신청"/></c:if>
 	        <c:if test="${vo.userDel != 'OK'}"><c:set var="active" value="활동중"/></c:if>
 		      <tr>
-		        <td>${vo.idx}</td>
+		        <td>${st.count}</td>
 		        <td><a href="MemberSearch.mem?mid=${vo.mid}">${vo.mid}</a></td>
 		        <td>${vo.nickName}</td>
 		        <td>${vo.name}</td>

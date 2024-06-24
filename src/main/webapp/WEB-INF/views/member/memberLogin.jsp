@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}" />
+<%-- 
 <%
 	// 로그인창에 아이디 체크 유무에 대한 처리
 	// 쿠키를 검색해서 cMid가 있을때 가져와서 아이디입력창에 뿌릴수 있게 한다.
@@ -15,6 +16,7 @@
 		}
 	}
 %>
+ --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,6 +83,7 @@
 			success : function res() {
 				if(res != "0") alert("새로운 비밀번호가 회원님 메일로 발송되었습니다.\n메일주소를 확인해주세요.");
 				else alert("등록하신 정보가 일치하지 않습니다.\n확인 후 다시 시도해주세요.");
+				location.reload();
 			},
 			error : function () {
 				alert("전송오류");
@@ -146,7 +149,7 @@
   		</tr>
   		<tr>
   			<td colspan="2" class="text-center">
-  				<input type="button" value="아이디 전송받기" onclick="findMid()"class="form-control" />
+  				<input type="button" value="아이디 전송받기" onclick="findMid()"class="form-control btn btn-success mr-2" />
   			</td>
   		</tr>
   	</table>
@@ -170,7 +173,7 @@
   		</tr>
   		<tr>
   			<td colspan="2" class="text-center">
-  				<input type="button" value="새비밀번호발급" onclick="newPassword()"class="form-control" />
+  				<input type="button" value="새비밀번호발급" onclick="newPassword()"class="form-control btn btn-success mr-2" />
   			</td>
   		</tr>
   	</table>

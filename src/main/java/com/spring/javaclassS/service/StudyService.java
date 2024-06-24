@@ -3,6 +3,8 @@ package com.spring.javaclassS.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.spring.javaclassS.vo.CrimeVO;
 import com.spring.javaclassS.vo.UserVO;
 
@@ -19,6 +21,8 @@ public interface StudyService {
 	public ArrayList<UserVO> getUserMidList(String mid);
 
 	public void setSaveCrimeData(CrimeVO vo);
+
+	public int fileUpload(MultipartFile fName, String mid);
 
 
 	

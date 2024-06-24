@@ -1,10 +1,18 @@
 package com.spring.javaclassS.service;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaclassS.dao.StudyDAO;
 import com.spring.javaclassS.vo.CrimeVO;
@@ -174,6 +182,40 @@ public class StudyServiceImpl implements StudyService {
 	@Override
 	public void setSaveCrimeData(CrimeVO vo) {
 		studyDAO.setSaveCrimeData(vo);
+	}
+
+	@Override
+	public int fileUpload(MultipartFile fName, String mid) {
+		int res = 0;
+		
+		// 파일이름 중복처리를 위해 uuid객체 활용
+		UUID uid = UUID.randomUUID();
+		String oFileName = fName.getOriginalFilename();
+		String sFileName = mid + "_" + uid.toString().substring(0,8) + "_" + oFileName;		
+		
+		// 서버에 파일 올리기
+		try {
+			writeFile(fName, sFileName);
+			res = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	private void writeFile(MultipartFile fName, String sFileName) throws IOException {
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/data/fileUpload/");
+		
+		FileOutputStream fos = new FileOutputStream(realPath + sFileName);
+		
+		//fos.write(fName.getBytes());
+		if(fName.getBytes().length != -1) {		// 파일이 존재할때, 없지 않을때 
+			fos.write(fName.getBytes());
+		}
+		fos.flush();
+		fos.close();
 	}
 
 	

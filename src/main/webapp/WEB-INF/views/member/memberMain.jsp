@@ -46,6 +46,7 @@
   <!-- 실시간 채팅방(DB) -->
   <div class="row">
     <div class="col" style="width:420px">
+  <%-- 
 	    <form name="chatForm">
 	      <label for="chat"><b>실시간 대화방</b></label>
 	      <iframe src="${ctp}/include/memberMessage.jsp" width="100%" height="200px" class="border"></iframe>
@@ -56,6 +57,13 @@
 	        </div>
 	      </div>
 	    </form>
+	   --%>
+	   
+	   <c:if test="${!empty sLogin}">
+	   		현재 임시비밀번호를 발급하여 메일로 전송처리 되어있습니다.<br/>
+	   		개인정보를 확인하시고, 비밀번호를 새로 변경해 주세요.<br/>
+	   </c:if>
+	   
 	  </div>
 	  <div class="col text-center">
 	    <b>신규 메세지(<font color='red'><b>${wmCnt}</b></font>건)</b>
@@ -94,7 +102,7 @@
 	  	<p>총 보유 포인트 : <b>${mVo.point}</b> 점</p>
   	</div>
     <div class="col">
-      <p><img src="${ctp}/images/member/${mVo.photo}" width="200px"/></p>
+      <p><img src="${ctp}/member/${mVo.photo}" width="200px"/></p>
   	</div>
   </div>
   <hr/>
