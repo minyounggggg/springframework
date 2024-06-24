@@ -21,8 +21,8 @@
     	// 아이디,닉네임,성명,이메일,홈페이지,전화번호,비밀번호 등등....
     	
     	// 정규식을 이용한 유효성검사처리.....
-      let regNickName = /^[가-힣0-9_]+$/;			// 닉네임은 한글,숫자,밑줄만 가능
-      let regName = /^[가-힣a-zA-Z]+$/;				// 이름은 한글/영문 가능
+	    let regNickName = /^[가-힣0-9_]+$/;			// 닉네임은 한글,숫자,밑줄만 가능
+	    let regName = /^[가-힣a-zA-Z]+$/;				// 이름은 한글/영문 가능
     	
     	
     	// 검사를 끝내고 필요한 내역들을 변수에 담아 회원가입처리한다.
@@ -109,7 +109,7 @@
     		nickCheckSw = 1;
     		
     		$.ajax({
-    			url  : "${ctp}/MemberNickCheck.mem",
+    			url  : "${ctp}/MemberNickCheck",
     			type : "get",
     			data : {nickName : nickName},
     			success:function(res) {
@@ -149,7 +149,7 @@
 <jsp:include page="/WEB-INF/views/include/slide2.jsp" />
 <p><br/></p>
 <div class="container">
-  <form name="myform" method="post" action="${ctp}/MemberUpdateOk.mem" class="was-validated" enctype="multipart/form-data">
+  <form name="myform" method="post" class="was-validated" enctype="multipart/form-data">
     <h2>회 원 가 입</h2>
     <br/>
     <div>아이디 : ${sMid}</div>

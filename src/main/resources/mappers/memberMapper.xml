@@ -42,4 +42,9 @@
 	<update id="setPwdChangeOk">
 		update member2 set pwd = #{pwd} where mid =#{mid};
 	</update>
+	
+	<update id="setMemberUpdateOk">
+		update member2 set nickName=#{vo.nickName}, name=#{vo.name}, email=#{vo.email}, gender=#{vo.gender}, birthday=#{vo.birthday}, tel=#{vo.tel}, address=#{vo.address}, homePage=#{vo.homePage}, job=#{vo.job}, hobby=#{vo.hobby}, content=#{vo.content}, userInfor=#{vo.userInfor}, photo=#{vo.photo} where mid=#{mid};
+	</update>
+	
 </mapper>

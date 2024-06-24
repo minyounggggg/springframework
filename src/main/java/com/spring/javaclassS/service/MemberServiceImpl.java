@@ -71,4 +71,10 @@ public class MemberServiceImpl implements MemberService {
 	public ArrayList<MemberVO> getMemberList(int level) {
 		return memberDAO.getMemberList(level);
 	}
+
+	@Override
+	public int setMemberUpdateOk(MemberVO vo, String mid) {
+		return memberDAO.setMemberUpdateOk(vo, mid);
+	}
+
 }

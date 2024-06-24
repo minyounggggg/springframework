@@ -21,6 +21,9 @@ public interface MemberDAO {
 	int setPwdChangeOk(@Param("mid") String mid, @Param("pwd") String pwd);
 
 	ArrayList<MemberVO> getMemberList(@Param("level") int level);
+
+	int setMemberUpdateOk(@Param("vo") MemberVO vo, @Param("mid") String mid);
+
 	
 
 }
