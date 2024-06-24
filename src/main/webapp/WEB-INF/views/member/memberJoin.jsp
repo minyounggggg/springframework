@@ -17,13 +17,13 @@
     let nickCheckSw = 0;
     
     function fCheck() {
-    	// 유효성 검사.....
-    	// 아이디,닉네임,성명,이메일,홈페이지,전화번호,비밀번호 등등....
-    	
-    	// 정규식을 이용한 유효성검사처리.....
-    	let regMid = /^[a-zA-Z0-9_]{4,20}$/;	// 아이디는 4~20의 영문 대/소문자와 숫자와 밑줄 가능
-      let regNickName = /^[가-힣0-9_]+$/;					// 닉네임은 한글, 숫자, 밑줄만 가능
-      let regName = /^[가-힣a-zA-Z]+$/;				// 이름은 한글/영문 가능
+	   	// 유효성 검사.....
+	   	// 아이디,닉네임,성명,이메일,홈페이지,전화번호,비밀번호 등등....
+	   	
+	   	// 정규식을 이용한 유효성검사처리.....
+	   	let regMid = /^[a-zA-Z0-9_]{4,20}$/;	// 아이디는 4~20의 영문 대/소문자와 숫자와 밑줄 가능
+	    let regNickName = /^[가-힣0-9_]+$/;					// 닉네임은 한글, 숫자, 밑줄만 가능
+	    let regName = /^[가-힣a-zA-Z]+$/;				// 이름은 한글/영문 가능
     	
     	
     	// 검사를 끝내고 필요한 내역들을 변수에 담아 회원가입처리한다.
@@ -53,53 +53,53 @@
     		return false;
     	}
     	else if(pwd.length < 4 && pwd.length > 20) {
-        alert("비밀번호는 4~20 자리로 작성해주세요.");
-        myform.pwd.focus();
-        return false;
-      }
-      else if(!regNickName.test(nickName)) {
-        alert("닉네임은 한글만 사용가능합니다.");
-        myform.nickName.focus();
-        return false;
-      }
-      else if(!regName.test(name)) {
-        alert("성명은 한글과 영문대소문자만 사용가능합니다.");
-        myform.name.focus();
-        return false;
-      }
-			// 이메일 주소형식체크
+	        alert("비밀번호는 4~20 자리로 작성해주세요.");
+	        myform.pwd.focus();
+	        return false;
+      	}
+      	else if(!regNickName.test(nickName)) {
+	        alert("닉네임은 한글만 사용가능합니다.");
+	        myform.nickName.focus();
+	        return false;
+	    }
+	    else if(!regName.test(name)) {
+	        alert("성명은 한글과 영문대소문자만 사용가능합니다.");
+	        myform.name.focus();
+	        return false;
+	    }
+		// 이메일 주소형식체크
+		
+		// 홈페이지 주소형식체크
+		
+		// 전화번호 형식 체크
+		if(tel2 != "" && tel3 != "") {
+			// 전화번호 정규화 체크
+		}
+		else {
+			tel2 = " ";
+			tel3 = " ";
+			tel = tel1 + "-" + tel2 + "-" + tel3;
+		}
 			
-			// 홈페이지 주소형식체크
+		
+		// 전송전에 파일에 관련된 사항들을 체크해준다.
+		let fName = document.getElementById("file").value;
+		if(fName.trim() != "") {
+			let ext = fName.substring(fName.lastIndexOf(".")+1).toLowerCase();
+			let maxSize = 1024 * 1024 * 5;
+			let fileSize = document.getElementById("file").files[0].size;
 			
-			// 전화번호 형식 체크
-			if(tel2 != "" && tel3 != "") {
-				// 전화번호 정규화 체크
+			if(ext != 'jpg' && ext != 'gif' && ext != 'png') {
+				alert("그림파일만 업로드 가능합니다.");
+				return false;
 			}
-			else {
-				tel2 = " ";
-				tel3 = " ";
-				tel = tel1 + "-" + tel2 + "-" + tel3;
+			else if(fileSize > maxSize) {
+				alert("업로드할 파일의 최대용량은 5MByte입니다.");
+				return false;
 			}
-			
-			/*
-			// 전송전에 파일에 관련된 사항들을 체크해준다.
-			let fName = document.getElementById("file").value;
-			if(fName.trim() != "") {
-				let ext = fName.substring(fName.lastIndexOf(".")+1).toLowerCase();
-				let maxSize = 1024 * 1024 * 5;
-				let fileSize = document.getElementById("file").files[0].size;
-				
-				if(ext != 'jpg' && ext != 'gif' && ext != 'png') {
-					alert("그림파일만 업로드 가능합니다.");
-					return false;
-				}
-				else if(fileSize > maxSize) {
-					alert("업로드할 파일의 최대용량은 5MByte입니다.");
-					return false;
-				}
-			}
-			else return false;			
-    		*/
+		}
+		//else myform.fName.value = 'noimage.jpg';
+    		
     		
 			// 아이디/닉네임 중복체크
     	if(idCheckSw == 0) {
@@ -206,7 +206,7 @@
 <p><br/></p>
 <div class="container">
 <!--   <form name="myform" method="post" class="was-validated" enctype="multipart/form-data"> -->
-  <form name="myform" method="post" class="was-validated">
+  <form name="myform" method="post" class="was-validated" enctype="multipart/form-data">
     <h2>회 원 가 입</h2>
     <br/>
     <div class="form-group">

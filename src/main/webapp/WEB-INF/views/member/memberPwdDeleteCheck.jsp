@@ -33,7 +33,7 @@
 <jsp:include page="/WEB-INF/views/include/slide2.jsp" />
 <p><br/></p>
 <div class="container">
-  <form name="myform" method="post" action="MemberDeleteCheckOk.mem">
+  <form name="myform" method="post">
     <table class="table table-bordered text-center">
       <tr>
         <td colspan="2">
