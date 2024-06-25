@@ -150,7 +150,7 @@
 <p><br/></p>
 <div class="container">
   <form name="myform" method="post" class="was-validated" enctype="multipart/form-data">
-    <h2>회 원 가 입</h2>
+    <h2>회 원 정 보 수 정</h2>
     <br/>
     <div>아이디 : ${sMid}</div>
     <div class="form-group">
