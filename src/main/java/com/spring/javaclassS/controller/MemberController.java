@@ -329,20 +329,20 @@ public class MemberController {
 		String mid = (String) session.getAttribute("sMid");
 		MemberVO vo = memberService.getMemberIdCheck(mid);
 		
-		String[] tel = vo.getTel().split("-");
-		if(tel[1].equals(" ")) tel[1] = "";
-		if(tel[2].equals(" ")) tel[2] = "";
-		model.addAttribute("tel1", tel[0]);
-		model.addAttribute("tel2", tel[1]);
-		model.addAttribute("tel3", tel[2]);
-		
-		String[] address = vo.getAddress().split("/");
-		model.addAttribute("postcode", address[0]);
-		model.addAttribute("roadAddress", address[1]);
-		model.addAttribute("detailAddress", address[2]);
-		model.addAttribute("extraAddress", address[3]);
-		
-		model.addAttribute("hobby", vo.getHobby());
+//		String[] tel = vo.getTel().split("-");
+//		if(tel[1].equals(" ")) tel[1] = "";
+//		if(tel[2].equals(" ")) tel[2] = "";
+//		model.addAttribute("tel1", tel[0]);
+//		model.addAttribute("tel2", tel[1]);
+//		model.addAttribute("tel3", tel[2]);
+//		
+//		String[] address = vo.getAddress().split("/");
+//		model.addAttribute("postcode", address[0]);
+//		model.addAttribute("roadAddress", address[1]);
+//		model.addAttribute("detailAddress", address[2]);
+//		model.addAttribute("extraAddress", address[3]);
+//		
+//		model.addAttribute("hobby", vo.getHobby());
 		
 		model.addAttribute("vo", vo);
 		return "member/memberUpdate";
