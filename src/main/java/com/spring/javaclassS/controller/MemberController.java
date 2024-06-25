@@ -324,6 +324,53 @@ public class MemberController {
 		return "member/memberPwdDeleteCheck";
 	}
 	
+	@RequestMapping(value = "/memberUpdate", method = RequestMethod.GET)
+	public String memberUpdateGet(Model model, HttpSession session) {
+		String mid = (String) session.getAttribute("sMid");
+		MemberVO vo = memberService.getMemberIdCheck(mid);
+		
+		String[] tel = vo.getTel().split("-");
+		if(tel[1].equals(" ")) tel[1] = "";
+		if(tel[2].equals(" ")) tel[2] = "";
+		model.addAttribute("tel1", tel[0]);
+		model.addAttribute("tel2", tel[1]);
+		model.addAttribute("tel3", tel[2]);
+		
+		String[] address = vo.getAddress().split("/");
+		model.addAttribute("postcode", address[0]);
+		model.addAttribute("roadAddress", address[1]);
+		model.addAttribute("detailAddress", address[2]);
+		model.addAttribute("extraAddress", address[3]);
+		
+		model.addAttribute("hobby", vo.getHobby());
+		
+		model.addAttribute("vo", vo);
+		return "member/memberUpdate";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/memberUpdate", method = RequestMethod.POST)
+	public String memberUpdatePost(MultipartFile fName, HttpSession session, String nickName) {
+		String mid = (String) session.getAttribute("sMid");
+		String sNickName = (String) session.getAttribute("sNickName");
+		MemberVO vo = memberService.getMemberIdCheck(mid);
+		// 아이디 닉네임 중복체크
+		//if(memberService.getMemberNickCheck(vo.getNickName()) != null) return "redirect:/message/nickCheckNo";
+		
+		if(!sNickName.equals(nickName)) {
+			if(vo.getNickName() != null) return "redirect:/message/nickCheckNo";
+		}
+		//else vo.setNickName(nickName);
+		
+		// 회원 사진 처리(Service객체에서 처리 후 DB에 저장한다.)
+		if(!fName.getOriginalFilename().equals("")) vo.setPhoto(memberService.fileUpload(fName, vo.getMid()));
+		else vo.setPhoto("noimage.jpg");
+		
+		int res = memberService.setMemberUpdateOk(vo, mid);
+		
+		if(res != 0) return "redirect:/message/memberUpdateOk";
+		else return "redirect:/message/memberUpdateNo";
+	}
 	
 	
 }

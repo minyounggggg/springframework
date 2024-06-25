@@ -24,6 +24,9 @@ public interface MemberService {
 
 	public ArrayList<MemberVO> getMemberList(int level);
 
+	public int setMemberUpdateOk(MemberVO vo, String mid);
+
+
 	
 
 }

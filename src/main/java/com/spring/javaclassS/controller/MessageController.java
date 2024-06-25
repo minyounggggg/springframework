@@ -112,6 +112,14 @@ public class MessageController {
 			model.addAttribute("msg", "파일 업로드 실패");
 			model.addAttribute("url", "/study/fileUpload/fileUpload");
 		}
+		else if(msgFlag.equals("memberUpdateOk")) {
+			model.addAttribute("msg", "회원정보가 수정되었습니다.");
+			model.addAttribute("url", "/member/memberUpdate");
+		}
+		else if(msgFlag.equals("memberUpdateNo")) {
+			model.addAttribute("msg", "회원정보 수정 실패. 다시 시도해주세요.");
+			model.addAttribute("url", "/member/memberUpdate");
+		}
 		
 		
 		
