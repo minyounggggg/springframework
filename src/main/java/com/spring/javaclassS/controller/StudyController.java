@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.javaclassS.service.DbtestService;
 import com.spring.javaclassS.service.StudyService;
@@ -251,4 +252,32 @@ public class StudyController {
 		return res;
 	}
 	
+	@RequestMapping(value = "/fileUpload/multiFile", method = RequestMethod.GET)
+	public String multifileGet() {
+		return "study/fileUpload/multiFile";
+	}
+	
+	@RequestMapping(value = "/fileUpload/multiFile", method = RequestMethod.POST)
+	public String multifilePost(MultipartHttpServletRequest mFile) {
+		
+		int res = studyService.multiFileUpload(mFile);
+		
+		if(res != 0) return "redirect:/message/multiFileUploadOk";
+		else return "redirect:/message/multiFileUploadNo";
+	}
+	
+	@RequestMapping(value = "/fileUpload/multiFile2", method = RequestMethod.GET)
+	public String multifile2Get() {
+		return "study/fileUpload/multiFile2";
+	}
+	
+	@RequestMapping(value = "/fileUpload/multiFile2", method = RequestMethod.POST)
+	public String multifile2Post(MultipartHttpServletRequest mFile, HttpServletRequest request, String imgNames) {
+		//String[] imgNames = request.getParameter("imgNames").split("/");	// "/"로 분리해서 배열로 담기
+		
+		int res = studyService.multiFileUpload(mFile);
+		
+		if(res != 0) return "redirect:/message/multiFileUploadOk";
+		else return "redirect:/message/multiFileUploadNo";
+	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.javaclassS.vo.CrimeVO;
 import com.spring.javaclassS.vo.UserVO;
@@ -24,6 +25,7 @@ public interface StudyService {
 
 	public int fileUpload(MultipartFile fName, String mid);
 
+	public int multiFileUpload(MultipartHttpServletRequest mFile);
 
 	
 
