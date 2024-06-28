@@ -35,7 +35,7 @@
       <td colspan="2"><h2 class="text-center">게 시 판 리 스 트</h2></td>
     </tr>
     <tr>
-      <td><c:if test="${sLevel != 1}"><a href="boardInput" class="btn btn-success btn-sm">글쓰기</a></c:if></td>
+      <td><c:if test="${sLevel != 3}"><a href="boardInput" class="btn btn-success btn-sm">글쓰기</a></c:if></td>
       <td class="text-right">
         <select name="pageSize" id="pageSize" onchange="pageSizeCheck()">
           <option ${pageVO.pageSize==5  ? "selected" : ""}>5</option>
@@ -98,7 +98,7 @@
 	<br/>
 	<!-- 검색기 시작 -->
 	<div class="container text-center">
-	  <form name="searchForm" method="post" action="BoardSearchList.bo">
+	  <form name="searchForm" method="post" action="boardSearch">
 	    <b>검색 : </b>
 	    <select name="search" id="search">
 	      <option value="title">글제목</option>
@@ -107,6 +107,8 @@
 	    </select>
 	    <input type="text" name="searchString" id="searchString" required />
 	    <input type="submit" value="검색" class="btn btn-secondary btn-sm"/>
+	    <input type="hidden" name="pag" value="${pageVO.pag}"/>
+	    <input type="hidden" name="pageSize" value="${pageVO.pageSize}"/>
 	  </form>
 	</div>
 	<!-- 검색기 끝 -->

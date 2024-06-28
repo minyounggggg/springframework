@@ -24,13 +24,15 @@ select * from board2;
 
 /* 댓글 달기 */
 create table boardReply2 (
-  idx       int not null auto_increment,	/* 댓글 고유번호 */
+  idx       int not null auto_increment,		/* 댓글 고유번호 */
   boardIdx  int not null,						/* 원본글(부모글)의 고유번호-외래키로 지정 */
-  mid				varchar(20) not null,		/* 댓글 올린이의 아이디 */
-  nickName	varchar(20) not null,		/* 댓글 올린이의 닉네임 */
-  wDate			datetime	default now(),/* 댓글 올린 날짜/시간 */
-  hostIp		varchar(50) not null,		/* 댓글 올린 PC의 고유 IP */
-  content		text not null,					/* 댓글 내용 */
+  re_step	int not null,						/* 레벨(re_step)에 따른 들여쓰기(계층번호): 부모댓글의 re_step은 0이다. 대댓글의 경우는 '부모re_step+1'로 처리한다. */
+  re_order	int not null,						/* 댓글의 순서를 결정한다. 부모댓글을 1번, 대댓글의 경우는 부모댓글보다 큰 대댓글은 re_order+1 처리하고, 자신읜 부모댓글의 re_order보다 +1 처리한다. */
+  mid		varchar(20) not null,				/* 댓글 올린이의 아이디 */
+  nickName	varchar(20) not null,				/* 댓글 올린이의 닉네임 */
+  wDate		datetime	default now(),			/* 댓글 올린 날짜/시간 */
+  hostIp	varchar(50) not null,				/* 댓글 올린 PC의 고유 IP */
+  content	text not null,						/* 댓글 내용 */
   primary key(idx),
   foreign key(boardIdx) references board2(idx)
   on update cascade
