@@ -1,13 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+
+	// 카카오 로그아웃
+	window.Kakao.init("4bed81139daac8fd06f75e2c669b1570");
+	function kakaoLogout() {
+		const accessToken = Kakao.Auth.getAccessToken();
+		if(accessToken){	// 내 토큰이 살아잇다면 끊어조
+			Kakao.Auth.logout(function () {
+				window.location.href = "https://kauth.kakao.com/oauth/logout?client_id=4bed81139daac8fd06f75e2c669b1570&logout_redirect_uri=http://localhost:9090/javaclassS/member/memberLogout";
+				
+			});
+		}
+	}
+</script>
 
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-black w3-card">
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-<%--     <a href="${ctp}/" class="w3-bar-item w3-button w3-padding-large">HOME</a> --%> <!-- 프로젝트 제출시 주석풀고 밑에꺼 주석 -->
-    <a href="http://192.168.50.53:9090/javaclassS/" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="${ctp}/" class="w3-bar-item w3-button w3-padding-large">HOME</a> <!-- 프로젝트 제출시 주석풀고 밑에꺼 주석 -->
+    <!-- <a href="http://192.168.50.53:9090/javaclassS/" class="w3-bar-item w3-button w3-padding-large">HOME</a> -->
     <a href="${ctp}/guest/guestList" class="w3-bar-item w3-button w3-padding-large w3-hide-small">GUEST</a>
     <c:if test="${!empty sLevel}">
 	    <a href="${ctp}/board/boardList" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BOARD</a>
@@ -44,7 +59,13 @@
 	    <a href="${ctp}/member/memberJoin" class="w3-bar-item w3-button w3-padding-large w3-hide-small">JOIN</a>
     </c:if>
     <c:if test="${!empty sLevel}">
-	    <a href="${ctp}/member/memberLogout" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LOGOUT</a>
+	    <div class="w3-dropdown-hover w3-hide-small">
+		      <button class="w3-padding-large w3-button" title="More">Logout <i class="fa fa-caret-down"></i></button>     
+		      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+			    <a href="${ctp}/member/memberLogout" class="w3-bar-item w3-button w3-padding-large w3-hide-small">일반 LOGOUT</a>
+			    <a href="javascript:kakaoLogout()" class="w3-bar-item w3-button w3-padding-large w3-hide-small">카카오 LOGOUT</a>
+			  </div>
+		</div>
     </c:if>
     <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
   </div>

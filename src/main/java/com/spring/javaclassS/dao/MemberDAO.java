@@ -24,6 +24,10 @@ public interface MemberDAO {
 
 	int setMemberUpdateOk(@Param("vo") MemberVO vo, @Param("mid") String mid);
 
+	MemberVO getMemberNickNameEmailCheck(@Param("nickName") String nickName, @Param("email") String email);
+
+	void setKakaoMemberInput(@Param("mid") String mid, @Param("pwd") String pwd, @Param("nickName") String nickName, @Param("email") String email);
+
 	
 
 }

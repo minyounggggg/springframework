@@ -24,6 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>memberLogin.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
   	'use strict';
   	
@@ -91,6 +92,26 @@
 		});
 	}
   	
+  	// 카카오로그인(자바스크립트 앱키 등록)
+  	window.Kakao.init("4bed81139daac8fd06f75e2c669b1570");
+  	
+  	function kakaoLogin() {
+  		window.Kakao.Auth.login({		//window.Kakao.~~~ 카카오명령을 쓰기위해 Kakao.을 붙여준다. (window는 생략가능)
+  			scope: 'profile_nickname, account_email',
+  			success : function (autoObj) {
+				console.log(Kakao.Auth.getAccessToken(), "정상 토큰 발급됨,,");
+				window.Kakao.API.request({
+					url : '/v2/user/me',
+					success : function(res){
+						const kakao_account = res.kakao_account;
+						console.log(kakao_account);
+						location.href = "${ctp}/member/kakaoLogin?nickName="+kakao_account.profile.nickname+"&email="+kakao_account.email+"&accessToken="+Kakao.Auth.getAccessToken();
+					}
+				});
+			}
+  		});
+	}
+  	
   </script>
 </head>
 <body>
@@ -116,7 +137,8 @@
           <input type="submit" value="로그인" class="btn btn-success mr-2"/>
           <input type="reset" value="다시입력" class="btn btn-warning mr-2"/>
           <input type="button" value="회원가입" onclick="location.href='${ctp}/member/memberJoin';" class="btn btn-primary mr-4"/>
-	      <input type="checkbox" name="idSave" checked /> 아이디 저장
+	      <!-- <input type="checkbox" name="idSave" checked /> 아이디 저장 -->
+	      <a href="javascript:kakaoLogin()"><img src="${ctp}/images/kakao_login_medium_narrow.png"/></a>
         </td>
       </tr>
     </table>
