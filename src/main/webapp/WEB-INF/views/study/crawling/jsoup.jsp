@@ -166,7 +166,7 @@
 			let searchSelector = "a.thumb_link";
 			
 			$.ajax({
-				url : "${ctp}/study/crawling/jsoup4",
+				url : "${ctp}/study/crawling/jsoup5",
 				type : "post",
 				data : {search:search, searchSelector : searchSelector},
 				success : function (vos) {

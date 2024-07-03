@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -257,10 +258,32 @@ public class StudyServiceImpl implements StudyService {
 			return res;
 	}
 
-	
-	
-	
+	@Override
+	public Map<String, Integer> analyzer(String content) {
+		int wordFrequenciesToReturn = 10;	// 빈도 수 반환되는거 10개
+		int minWordLength = 2;			// 글자수 2개
+		
+		Map<String, Integer> frequencyMap = new HashMap<>();
+		
+		String[] words = content.split("\\s+");	// 공백으로 자르기(정규식으로쓰기)
+		
+		for(String word : words) {
+			if(word.length() >= minWordLength) {
+				word = word.toLowerCase();
+				frequencyMap.put(word, frequencyMap.getOrDefault(word, 0) + 1);
+			}
+		}
+		
+		return frequencyMap.entrySet().stream()
+	          .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+	          .limit(wordFrequenciesToReturn)
+	          .collect(HashMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), HashMap::putAll);
 	}
+
+	
+	
+	
+}
 
 	
 
