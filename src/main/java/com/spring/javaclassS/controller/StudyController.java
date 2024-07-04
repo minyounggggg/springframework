@@ -24,6 +24,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -45,6 +46,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -64,6 +66,7 @@ import com.spring.javaclassS.service.DbtestService;
 import com.spring.javaclassS.service.StudyService;
 import com.spring.javaclassS.vo.CrawlingVO;
 import com.spring.javaclassS.vo.CrimeVO;
+import com.spring.javaclassS.vo.KakaoAddressVO;
 import com.spring.javaclassS.vo.MailVO;
 import com.spring.javaclassS.vo.UserVO;
 
@@ -860,6 +863,99 @@ public class StudyController {
 	
 	private InputStream getInputStream(String path) throws IOException {
 		return new FileInputStream(new File(path));
+	}
+	
+	@RequestMapping(value = "/random/randomForm", method = RequestMethod.GET)
+	public String randomFormGet() {
+		return "study/random/randomForm";
+	}
+	
+	//randomNumeric : 숫자를 랜덤하게 처리
+	@ResponseBody
+	@RequestMapping(value = "/random/randomNumeric", method = RequestMethod.POST)
+	public String randomNumericPost() {
+		// (int) (Math.random()*(최대값-최소값+1)) + 최소값
+				//0에서1미만 실수가 나오기때문에 정수형인 int로 변형
+		return ((int)(Math.random()*(99999999-10000000+1)) + 10000000) + "";
+	}
+	
+	//randomUUID : 숫자와 문자를 소문자형식으로 랜덤하게 처리 (16진수 32자리)
+	@ResponseBody
+	@RequestMapping(value = "/random/randomUUID", method = RequestMethod.POST)
+	public String randomUUIDPost() {
+		return (UUID.randomUUID()) + "";
+	}
+	
+	//randomUUID : 숫자와 문자를 대/소문자 섞어서 랜덤하게 처리 (일반 영숫자 xx자리)
+	@ResponseBody
+	@RequestMapping(value = "/random/randomAlphaNumeric", method = RequestMethod.POST)
+	public String randomAlphaNumericPost() {
+		//RandomStringUtils.randomAlphanumeric(64)  	// 내가 적은 숫자만큼 자릿수가 나온다. (64자리)
+		return RandomStringUtils.randomAlphanumeric(20);
+	}
+	
+	// 카카오맵 화면
+	@RequestMapping(value = "/kakao/kakaoMap", method = RequestMethod.GET)
+	public String kakaoMapGet() {
+		return "study/kakao/kakaoMap";
+	}
+	
+	// 카카오맵 마커표시/저장 폼보기
+	@RequestMapping(value = "/kakao/kakaoEx1", method = RequestMethod.GET)
+	public String kakaoEx1Get() {
+		return "study/kakao/kakaoEx1";
+	}
+	
+	// 카카오맵 마커표시/저장 처리
+	@ResponseBody
+	@RequestMapping(value = "/kakao/kakaoEx1", method = RequestMethod.POST)
+	public String kakaoEx1Post(KakaoAddressVO vo) {
+		KakaoAddressVO searchVO = studyService.getKakaoAdderssSearch(vo.getAddress());
+		
+		if(searchVO != null) return "0";
+		
+		studyService.setKakaoAddressInput(vo);
+		
+		return "1";
+	}
+	
+	// 카카오맵 MyDB에 저장된 지명검색
+	@RequestMapping(value = "/kakao/kakaoEx2", method = RequestMethod.GET)
+	public String kakaoEx2Get(Model model,
+		@RequestParam(name="address", defaultValue = "", required = false) String address) {
+		
+		KakaoAddressVO vo = new KakaoAddressVO();
+		
+		List<KakaoAddressVO> addressVos = studyService.getKakaoAddressList();
+		
+		if(address.equals("")) {
+			vo.setAddress("청주그린컴퓨터");
+			vo.setLatitude(36.635074754244194);
+			vo.setLongitude(127.45951821198324);
+		}
+		else {
+			vo = studyService.getKakaoAdderssSearch(address);
+		}
+		
+		model.addAttribute("addressVos", addressVos);
+		model.addAttribute("vo", vo);
+		
+		return "study/kakao/kakaoEx2";
+	}
+	
+	// 카카오맵 MyDB에 저장된 검색 위치 삭제하기
+	@ResponseBody
+	@RequestMapping(value = "/kakao/kakaoAddressDelete", method = RequestMethod.POST)
+	public String kakaoAddressDeletePost(String address) {
+		return studyService.setKakaoAddressDelete(address) + "";
+	}
+	
+	// 카카오맵 MyDB에 저장된 키워드 검색 후 MyDB에 저장하기
+	@RequestMapping(value = "/kakao/kakaoEx3", method = RequestMethod.GET)
+	public String kakaoEx3Get(Model model,
+			@RequestParam(name="address", defaultValue = "", required = false) String address) {
+		model.addAttribute("address", address);
+		return "study/kakao/kakaoEx3";
 	}
 	
 }

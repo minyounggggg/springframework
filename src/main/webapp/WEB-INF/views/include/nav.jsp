@@ -43,11 +43,26 @@
 	      </div>
 	    </div>
 	    <div class="w3-dropdown-hover w3-hide-small">
+	      <button class="w3-padding-large w3-button" title="More">STUDY_2 <i class="fa fa-caret-down"></i></button>     
+	      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+	        <a href="${ctp}/study/random/randomForm" class="w3-bar-item w3-button">랜덤알파뉴메리</a>
+	        <a href="${ctp}/study/kakao/kakaoMap" class="w3-bar-item w3-button">카카오맵</a>
+	        <a href="${ctp}/study/ajax/ajaxForm" class="w3-bar-item w3-button">날씨 API</a>
+	        <a href="${ctp}/study/restapi/restapi" class="w3-bar-item w3-button">캡챠연습</a>
+	        <a href="${ctp}/study/password/password" class="w3-bar-item w3-button">QR코드</a>
+	        <a href="${ctp}/study/mail/mailForm" class="w3-bar-item w3-button">웹 차트</a>
+	        <a href="${ctp}/study/fileUpload/fileUpload" class="w3-bar-item w3-button">트랜젝션</a>
+	        <a href="#" class="w3-bar-item w3-button">스케줄러</a>
+	      </div>
+	    </div>
+	    <div class="w3-dropdown-hover w3-hide-small">
 	      <button class="w3-padding-large w3-button" title="More">MY PAGE <i class="fa fa-caret-down"></i></button>     
 	      <div class="w3-dropdown-content w3-bar-block w3-card-4">
 	        <a href="${ctp}/member/memberMain" class="w3-bar-item w3-button">회원메인방</a>
 	        <a href="${ctp}/" class="w3-bar-item w3-button">일정관리</a>
 	        <a href="${ctp}/" class="w3-bar-item w3-button">Photo Gallery</a>
+	        <a href="${ctp}/" class="w3-bar-item w3-button">DB 채팅</a>
+	        <a href="${ctp}/" class="w3-bar-item w3-button">웹소켓 채팅</a>
 	        <a href="${ctp}/member/memberList" class="w3-bar-item w3-button">회원리스트</a>
 	        <a href="${ctp}/member/memberPwdCheck/p" class="w3-bar-item w3-button">비밀번호변경</a>
 	        <a href="${ctp}/member/memberPwdCheck/i" class="w3-bar-item w3-button">회원정보수정</a>

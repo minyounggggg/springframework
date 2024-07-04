@@ -1,10 +1,12 @@
 package com.spring.javaclassS.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.spring.javaclassS.vo.CrimeVO;
+import com.spring.javaclassS.vo.KakaoAddressVO;
 import com.spring.javaclassS.vo.UserVO;
 
 public interface StudyDAO {
@@ -14,5 +16,13 @@ public interface StudyDAO {
 	public ArrayList<UserVO> getUserMidList(@Param("mid")String mid);
 
 	public void setSaveCrimeData(@Param("vo")CrimeVO vo);
+
+	public KakaoAddressVO getKakaoAdderssSearch(@Param("address")String address);
+
+	public void setKakaoAddressInput(@Param("vo")KakaoAddressVO vo);
+
+	public List<KakaoAddressVO> getKakaoAddressList();
+
+	public int setKakaoAddressDelete(@Param("address")String address);
 
 }
