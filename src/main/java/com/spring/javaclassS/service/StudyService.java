@@ -40,6 +40,8 @@ public interface StudyService {
 
 	public int setKakaoAddressDelete(String address);
 
+	public String fileCsvToMysql(MultipartFile fName);
+
 	
 
 }
