@@ -99,12 +99,20 @@ public class MessageController {
 			model.addAttribute("msg", mid+"님 로그인 되었습니다.");
 			model.addAttribute("url", "/member/memberMain");
 		}
+		else if(msgFlag.equals("memberLoginNewOk")) {
+			model.addAttribute("msg", mid+"님 로그인 되었습니다.\\n신규 비밀번호가 발급되었습니다. 확인 후 회원정보를 변경해주세요.");
+			model.addAttribute("url", "/member/memberMain");
+		}
 		else if(msgFlag.equals("memberLoginNo")) {
 			model.addAttribute("msg", "로그인 실패");
 			model.addAttribute("url", "/member/memberLogin");
 		}
 		else if(msgFlag.equals("memberLogout")) {
 			model.addAttribute("msg", mid+"님 로그아웃 되었습니다.");
+			model.addAttribute("url", "/member/memberLogin");
+		}
+		else if(msgFlag.equals("kakaoLogout")) {
+			model.addAttribute("msg", mid+"님 로그아웃 되었습니다. (kakao)");
 			model.addAttribute("url", "/member/memberLogin");
 		}
 		else if(msgFlag.equals("fileUploadOk")) {
@@ -174,6 +182,10 @@ public class MessageController {
 		else if(msgFlag.equals("pdsUploadNo")) {
 			model.addAttribute("msg", "파일 업로드실패");
 			model.addAttribute("url", "/pds/pdsInput");
+		}
+		else if(msgFlag.equals("midSamSearch")) {
+			model.addAttribute("msg", "이미 사용중인 아이디입니다.\\n다시 확인 후 로그인해주세요.");
+			model.addAttribute("url", "/member/memberLogin");
 		}
 		
 		

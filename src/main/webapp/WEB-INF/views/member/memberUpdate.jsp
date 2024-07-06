@@ -316,7 +316,7 @@
           <input type="radio" class="form-check-input" name="userInfor" value="공개" <c:if test="${vo.userInfor == '공개'}">checked</c:if>/>공개
         </label>
       </div>
-      <div class="form-check-inline">
+      <div class="form-check-inline">z
         <label class="form-check-label">
           <input type="radio" class="form-check-input" name="userInfor" value="비공개" <c:if test="${vo.userInfor == '비공개'}">checked</c:if>/>비공개
         </label>
