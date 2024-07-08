@@ -3,12 +3,15 @@ package com.spring.javaclassS.common;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -96,6 +99,15 @@ public class JavaclassProvide {
 		mailSender.send(message);
 		
 		return "1";
+	}
+	
+	//QR코드 이름 생성
+	public String newNameCreate(int len) {
+		Date today = new Date();	//util 로 올리기 spl아님
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyMMddHHmm");
+		String newName = sdf.format(today);
+		newName += RandomStringUtils.randomAlphanumeric(len) + "_";		// len변수로 랜덤숫자 길이를 받는다.
+		return newName;
 	}
 	
 }

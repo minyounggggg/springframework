@@ -50,7 +50,7 @@
 	        <a href="${ctp}/study/kakao/kakaoMap" class="w3-bar-item w3-button">카카오맵</a>
 	        <a href="${ctp}/study/weather/weatherForm" class="w3-bar-item w3-button">날씨 API</a>
 	        <a href="${ctp}/study/captcha/captcha" class="w3-bar-item w3-button">캡챠연습</a>
-	        <a href="${ctp}/study/password/password" class="w3-bar-item w3-button">QR코드</a>
+	        <a href="${ctp}/study/qrCode/qrCodeForm" class="w3-bar-item w3-button">QR코드</a>
 	        <a href="${ctp}/study/mail/mailForm" class="w3-bar-item w3-button">웹 차트</a>
 	        <a href="${ctp}/study/fileUpload/fileUpload" class="w3-bar-item w3-button">트랜젝션</a>
 	        <a href="#" class="w3-bar-item w3-button">스케줄러</a>

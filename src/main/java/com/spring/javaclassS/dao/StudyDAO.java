@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.spring.javaclassS.vo.CrimeVO;
 import com.spring.javaclassS.vo.KakaoAddressVO;
 import com.spring.javaclassS.vo.PetCafeVO;
+import com.spring.javaclassS.vo.QrCodeVO;
 import com.spring.javaclassS.vo.UserVO;
 
 public interface StudyDAO {
@@ -27,5 +28,9 @@ public interface StudyDAO {
 	public int setKakaoAddressDelete(@Param("address") String address);
 
 	public void setPetCafe(@Param("vo") PetCafeVO vo);
+
+	public void setQrCodeCreate(@Param("vo") QrCodeVO vo);
+
+	public String getQrCodeSearch(@Param("rqCode") String qrCode);
 
 }
