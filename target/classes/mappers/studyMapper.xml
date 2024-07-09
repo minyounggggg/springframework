@@ -18,6 +18,11 @@
 		select * from kakaoAddress order by address;
 	</select>
 	
+	<select id="setQrCodeSearch" resultType="com.spring.javaclassS.vo.QrCodeVO">
+		select * from qrCode where qrCodeName = #{qrCode};
+	</select>
+	
+	
 	
 	<insert id="setSaveCrimeData">
 		insert into crime values (default, #{vo.year}, #{vo.police}, #{vo.robbery}, #{vo.theft}, #{vo.murder}, #{vo.violence});
@@ -30,6 +35,13 @@
 	<insert id="setPetCafe">
 	  insert into petCafe values (default,#{vo.placeName},#{vo.category},#{vo.sido},#{vo.sigungu},#{vo.dong},#{vo.latitude},#{vo.longitude},#{vo.zipNum},#{vo.rdnmAddress},#{vo.lnmAddress},#{vo.homePage},#{vo.closedDay},#{vo.openTime},#{vo.parking},#{vo.playPrice},#{vo.petOK},#{vo.petSize},#{vo.petLimit},#{vo.inPlaceOK},#{vo.outPlaceOK},#{vo.placeInfo},#{vo.petExtraFee});
 	</insert>
+	
+	<insert id="setQrCodeCreate">
+	  insert into qrCode values (default,#{vo.mid},#{vo.name},#{vo.email},#{vo.movieName},#{vo.movieDate},#{vo.movieTime},#{vo.movieAdult},#{vo.movieChild},#{vo.publishDate},#{vo.qrCodeName});
+	</insert>
+	
+	
+	
 	
 	<delete id="setKakaoAddressDelete">
 		delete from kakaoAddress where address = #{address};
