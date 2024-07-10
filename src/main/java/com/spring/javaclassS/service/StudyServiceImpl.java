@@ -30,6 +30,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.spring.javaclassS.common.JavaclassProvide;
 import com.spring.javaclassS.dao.StudyDAO;
+import com.spring.javaclassS.vo.ChartVO;
 import com.spring.javaclassS.vo.CrimeVO;
 import com.spring.javaclassS.vo.KakaoAddressVO;
 import com.spring.javaclassS.vo.PetCafeVO;
@@ -562,6 +563,11 @@ public class StudyServiceImpl implements StudyService {
 	@Override
 	public String getQrCodeSearch(String qrCode) {
 		return studyDAO.getQrCodeSearch(qrCode);
+	}
+
+	@Override
+	public List<ChartVO> getRecentlyVisitCount(int i) {
+		return studyDAO.getRecentlyVisitCount(i);
 	}
 
 	

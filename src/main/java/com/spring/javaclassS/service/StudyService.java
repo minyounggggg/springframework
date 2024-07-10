@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.spring.javaclassS.vo.ChartVO;
 import com.spring.javaclassS.vo.CrimeVO;
 import com.spring.javaclassS.vo.KakaoAddressVO;
 import com.spring.javaclassS.vo.QrCodeVO;
@@ -54,6 +55,8 @@ public interface StudyService {
 	public String setQrCodeCreate4(String realPath, QrCodeVO vo);
 
 	public String getQrCodeSearch(String qrCode);
+
+	public List<ChartVO> getRecentlyVisitCount(int i);
 
 	
 

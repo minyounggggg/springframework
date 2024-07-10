@@ -25,4 +25,7 @@ public class QrCodeVO {
 	private String publishDate;
 	private String qrCodeName;
 	
+	// qrCode로 Login을 위한 인증키
+	private String qrCodeToken;
+	
 }

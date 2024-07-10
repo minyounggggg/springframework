@@ -70,6 +70,7 @@ import com.spring.javaclassS.common.ARIAUtil;
 import com.spring.javaclassS.common.SecurityUtil;
 import com.spring.javaclassS.service.DbtestService;
 import com.spring.javaclassS.service.StudyService;
+import com.spring.javaclassS.vo.ChartVO;
 import com.spring.javaclassS.vo.CrawlingVO;
 import com.spring.javaclassS.vo.CrimeVO;
 import com.spring.javaclassS.vo.KakaoAddressVO;
@@ -1132,6 +1133,55 @@ public class StudyController {
 	@RequestMapping(value = "/qrCode/qrCodeSearch", method = RequestMethod.POST)
 	public String qrCodeSearchPost(String qrCode) {
 		return studyService.getQrCodeSearch(qrCode);
+	}
+	
+	@RequestMapping(value = "/chart/chartForm", method = RequestMethod.GET)
+	public String chartFormGet(Model model,
+			@RequestParam(name="part", defaultValue = "barVChart", required = false) String part) {
+		model.addAttribute("part", part);
+		return "study/chart/chartForm";
+	}
+	
+	@RequestMapping(value = "/chart2/chart2Form", method = RequestMethod.GET)
+	public String chart2FormGet(Model model,
+			@RequestParam(name="part", defaultValue = "barVChart", required = false) String part) {
+		model.addAttribute("part", part);
+		return "study/chart2/chart2Form";
+	}
+	
+	@RequestMapping(value = "/chart2/googleChart2", method = RequestMethod.POST)
+	public String googleChart2Post(Model model, ChartVO vo) {
+		model.addAttribute("vo", vo);
+		return "study/chart2/chart2Form";
+	}
+	
+	// 최근방문자수 선형 자료로 ㅍ표시하기
+	@RequestMapping(value = "/chart2/googleChart2Recently", method = RequestMethod.GET)
+	public String googleChart2RecentlyGet(Model model, ChartVO vo) {
+		//System.out.println("part : " + vo.getPart());
+		
+		List<ChartVO> vos = null;
+		if(vo.getPart().equals("lineChartVisitCount")) {
+			vos = studyService.getRecentlyVisitCount(1);
+			// vos자료를 차트에 표시처리가 잘 되지 않을경우에슨 ㄴ각각의 자료를 다시 편집해서 자료러 보내줘야한다.
+			String[] visitDates = new String[7];
+			int[] visitCounts = new int[7];
+			
+			for(int i=0; i<7; i++) {
+				visitDates[i] = vos.get(i).getVisitDate();
+				visitCounts[i] = vos.get(i).getVisitCount();
+			}
+			
+			model.addAttribute("xTitle", "방문날짜");
+			
+			model.addAttribute("visitDates", visitDates);
+			model.addAttribute("visitCounts", visitCounts);
+			model.addAttribute("title", "최근 7일간 방문횟수");
+			model.addAttribute("subTitle", "최근 7일간 방문한 해당일자의 방문자 총수를 표시합니다.");
+		}
+		
+		model.addAttribute("vo", vo);
+		return "study/chart2/chart2Form";
 	}
 	
 }

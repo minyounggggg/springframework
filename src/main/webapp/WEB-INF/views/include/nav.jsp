@@ -15,6 +15,17 @@
 			});
 		}
 	}
+	
+	// 네이버 로그아웃
+	  function naverLogout() {
+		  var url = "${ctp}/member/naverLogout";
+			var childWindow = window.open(url, "naverWindow", "width=50, height=50, top=0, left=0");
+			setTimeout(() => {
+		  	if(childWindow != null) childWindow.close();		  
+		    location.href = "${ctp}/member/memberLogout";
+		  }, 1500);
+	  }
+	
 </script>
 
 <!-- Navbar -->
@@ -51,7 +62,8 @@
 	        <a href="${ctp}/study/weather/weatherForm" class="w3-bar-item w3-button">날씨 API</a>
 	        <a href="${ctp}/study/captcha/captcha" class="w3-bar-item w3-button">캡챠연습</a>
 	        <a href="${ctp}/study/qrCode/qrCodeForm" class="w3-bar-item w3-button">QR코드</a>
-	        <a href="${ctp}/study/mail/mailForm" class="w3-bar-item w3-button">웹 차트</a>
+	        <a href="${ctp}/study/chart/chartForm" class="w3-bar-item w3-button">웹 차트1</a>
+	        <a href="${ctp}/study/chart2/chart2Form" class="w3-bar-item w3-button">웹 차트2</a>
 	        <a href="${ctp}/study/fileUpload/fileUpload" class="w3-bar-item w3-button">트랜젝션</a>
 	        <a href="#" class="w3-bar-item w3-button">스케줄러</a>
 	      </div>
@@ -83,6 +95,7 @@
 		      <div class="w3-dropdown-content w3-bar-block w3-card-4">
 			    <a href="${ctp}/member/memberLogout" class="w3-bar-item w3-button w3-padding-large w3-hide-small">일반 LOGOUT</a>
 			    <a href="javascript:kakaoLogout()" class="w3-bar-item w3-button w3-padding-large w3-hide-small">카카오 LOGOUT</a>
+			    <a href="javascript:naverLogout()" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Naver Logout</a>
 			  </div>
 		</div>
     </c:if>

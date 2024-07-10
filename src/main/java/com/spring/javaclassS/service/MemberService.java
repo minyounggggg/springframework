@@ -30,6 +30,11 @@ public interface MemberService {
 
 	public void setKakaoMemberInput(String mid, String pwd, String nickName, String email);
 
+	public String setQrCodeCreate(String realPath, String mid, String qrCodeToken);
+
+	public void setQrCodeLogin(String mid, String qrCodeToken, String today);
+
+	public String getQrCodeLoginCheck(String mid, String qrCodeToken);
 
 	
 

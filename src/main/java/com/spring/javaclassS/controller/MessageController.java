@@ -187,7 +187,22 @@ public class MessageController {
 			model.addAttribute("msg", "이미 사용중인 아이디입니다.\\n다시 확인 후 로그인해주세요.");
 			model.addAttribute("url", "/member/memberLogin");
 		}
-		
+		else if(msgFlag.equals("qrLoginMemberNo")) {
+			model.addAttribute("msg", "회원정보가 없습니다.\\n아이디 확인후 다시 로그인해 주세요.");
+			model.addAttribute("url", "/member/memberLogin");
+		}
+		else if(msgFlag.equals("qrLoginTimeOver")) {
+			model.addAttribute("msg", "시간이 경과했습니다.\\n다시 로그인해 주세요.");
+			model.addAttribute("url", "/member/memberLogin");
+		}
+		else if(msgFlag.equals("memberLoginNewOk")) {
+			model.addAttribute("msg", mid+"님 로그인 되셨습니다.\\n신규 비밀번호가 발급되었습니다. 검점후 회원정보를 변경해주세요.");
+			model.addAttribute("url", "/member/memberMain");
+		}
+		else if(msgFlag.equals("midSameSearch")) {
+			model.addAttribute("msg", "같은 아이디를 가진 회원이 존재합니다.\\n아이디 확인후 다시 로그인해 주세요.");
+			model.addAttribute("url", "/member/memberLogin");
+		}
 		
 		
 		return "include/message";

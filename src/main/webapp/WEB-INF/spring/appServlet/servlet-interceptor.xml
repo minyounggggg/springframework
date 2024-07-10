@@ -18,6 +18,11 @@
 			<mapping path="/member/**"/>
 			<mapping path="/board/boardList"/>
 			<exclude-mapping path="/member/memberLogin"/>
+		    <exclude-mapping path="/member/qrLogin"/>
+		    <exclude-mapping path="/member/qrLoginConfirm/**"/>
+		    <exclude-mapping path="/member/qrLoginCheck/**"/>
+		    <exclude-mapping path="/member/memberNaverLoginNew"/>
+		    <exclude-mapping path="/member/memberNaverLogin"/>
 			<exclude-mapping path="/member/memberJoin"/>
 			<exclude-mapping path="/member/memberIdCheck"/>
 			<exclude-mapping path="/member/memberNickCheck"/>

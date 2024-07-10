@@ -8,26 +8,29 @@ import com.spring.javaclassS.vo.MemberVO;
 
 public interface MemberDAO {
 
-	MemberVO getMemberIdCheck(@Param("mid") String mid);
+	public MemberVO getMemberIdCheck(@Param("mid") String mid);
 
-	MemberVO getMemberNickCheck(@Param("nickName") String nickName);
+	public MemberVO getMemberNickCheck(@Param("nickName") String nickName);
 
-	int setMemberJoinOk(@Param("vo") MemberVO vo);
+	public int setMemberJoinOk(@Param("vo") MemberVO vo);
 
-	void setMemberNewPasswordUpdate(@Param("mid") String mid, @Param("pwd") String pwd);
+	public void setMemberNewPasswordUpdate(@Param("mid") String mid, @Param("pwd") String pwd);
 
-	void setMemberInforUpdate(@Param("mid") String mid, @Param("point") int point);
+	public void setMemberInforUpdate(@Param("mid") String mid, @Param("point") int point);
 
-	int setPwdChangeOk(@Param("mid") String mid, @Param("pwd") String pwd);
+	public int setPwdChangeOk(@Param("mid") String mid, @Param("pwd") String pwd);
 
-	ArrayList<MemberVO> getMemberList(@Param("level") int level);
+	public ArrayList<MemberVO> getMemberList(@Param("level") int level);
 
-	int setMemberUpdateOk(@Param("vo") MemberVO vo, @Param("mid") String mid);
+	public int setMemberUpdateOk(@Param("vo") MemberVO vo, @Param("mid") String mid);
 
-	MemberVO getMemberNickNameEmailCheck(@Param("nickName") String nickName, @Param("email") String email);
+	public MemberVO getMemberNickNameEmailCheck(@Param("nickName") String nickName, @Param("email") String email);
 
-	void setKakaoMemberInput(@Param("mid") String mid, @Param("pwd") String pwd, @Param("nickName") String nickName, @Param("email") String email);
+	public void setKakaoMemberInput(@Param("mid") String mid, @Param("pwd") String pwd, @Param("nickName") String nickName, @Param("email") String email);
 
+	public void setQrCodeLogin(@Param("mid") String mid, @Param("qrCodeToken") String qrCodeToken, @Param("today") String today);
+
+	public String getQrCodeLoginCheck(@Param("mid") String mid, @Param("qrCodeToken") String qrCodeToken);
 	
 
 }
