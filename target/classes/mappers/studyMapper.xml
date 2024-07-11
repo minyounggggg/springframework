@@ -31,6 +31,14 @@
 		</if>
 	</select>
 	
+	<select id="getTransactionList" resultType="com.spring.javaclassS.vo.TransactionVO">
+		select * from user order by idx desc;
+	</select>
+	
+	<select id="getTransactionList2" resultType="com.spring.javaclassS.vo.TransactionVO">
+		select * from user2 order by mid;
+	</select>
+	
 	
 	
 	<insert id="setSaveCrimeData">
@@ -42,11 +50,28 @@
 	</insert>
 	
 	<insert id="setPetCafe">
-	  insert into petCafe values (default,#{vo.placeName},#{vo.category},#{vo.sido},#{vo.sigungu},#{vo.dong},#{vo.latitude},#{vo.longitude},#{vo.zipNum},#{vo.rdnmAddress},#{vo.lnmAddress},#{vo.homePage},#{vo.closedDay},#{vo.openTime},#{vo.parking},#{vo.playPrice},#{vo.petOK},#{vo.petSize},#{vo.petLimit},#{vo.inPlaceOK},#{vo.outPlaceOK},#{vo.placeInfo},#{vo.petExtraFee});
+		insert into petCafe values (default,#{vo.placeName},#{vo.category},#{vo.sido},#{vo.sigungu},#{vo.dong},#{vo.latitude},#{vo.longitude},#{vo.zipNum},#{vo.rdnmAddress},#{vo.lnmAddress},#{vo.homePage},#{vo.closedDay},#{vo.openTime},#{vo.parking},#{vo.playPrice},#{vo.petOK},#{vo.petSize},#{vo.petLimit},#{vo.inPlaceOK},#{vo.outPlaceOK},#{vo.placeInfo},#{vo.petExtraFee});
 	</insert>
 	
 	<insert id="setQrCodeCreate">
-	  insert into qrCode values (default,#{vo.mid},#{vo.name},#{vo.email},#{vo.movieName},#{vo.movieDate},#{vo.movieTime},#{vo.movieAdult},#{vo.movieChild},#{vo.publishDate},#{vo.qrCodeName});
+		insert into qrCode values (default,#{vo.mid},#{vo.name},#{vo.email},#{vo.movieName},#{vo.movieDate},#{vo.movieTime},#{vo.movieAdult},#{vo.movieChild},#{vo.publishDate},#{vo.qrCodeName});
+	</insert>
+	
+	<insert id="setTransactionUesrInput">
+		setTransactionUserTotalInput
+	</insert>
+	
+	<insert id="setTransactionUser1Input">
+		insert into user values (default, #{vo.mid}, #{vo.name}, #{vo.age}, #{vo.address});
+	</insert>
+	
+	<insert id="setTransactionUser2Input">
+		insert into user2 values (#{vo.mid}, #{vo.job});
+	</insert>
+	
+	<insert id="setTransactionUserTotalInput">
+		setTransactionUserTotalInput
+		insert into user2 values (#{vo.mid}, #{vo.job});
 	</insert>
 	
 	

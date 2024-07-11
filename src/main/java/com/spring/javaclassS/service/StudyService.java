@@ -12,6 +12,7 @@ import com.spring.javaclassS.vo.ChartVO;
 import com.spring.javaclassS.vo.CrimeVO;
 import com.spring.javaclassS.vo.KakaoAddressVO;
 import com.spring.javaclassS.vo.QrCodeVO;
+import com.spring.javaclassS.vo.TransactionVO;
 import com.spring.javaclassS.vo.UserVO;
 
 public interface StudyService {
@@ -57,6 +58,18 @@ public interface StudyService {
 	public String getQrCodeSearch(String qrCode);
 
 	public List<ChartVO> getRecentlyVisitCount(int i);
+
+	public List<TransactionVO> getTransactionList();
+
+	public int setTransactionUesrInput(TransactionVO vo);
+
+	public List<TransactionVO> getTransactionList2();
+
+	public void setTransactionUser1Input(TransactionVO vo);
+
+	public void setTransactionUser2Input(TransactionVO vo);
+
+	public void setTransactionUserTotalInput(TransactionVO vo);
 
 	
 

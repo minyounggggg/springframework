@@ -64,7 +64,8 @@
 	        <a href="${ctp}/study/qrCode/qrCodeForm" class="w3-bar-item w3-button">QR코드</a>
 	        <a href="${ctp}/study/chart/chartForm" class="w3-bar-item w3-button">웹 차트1</a>
 	        <a href="${ctp}/study/chart2/chart2Form" class="w3-bar-item w3-button">웹 차트2</a>
-	        <a href="${ctp}/study/fileUpload/fileUpload" class="w3-bar-item w3-button">트랜젝션</a>
+	        <a href="${ctp}/study/validator/validatorForm" class="w3-bar-item w3-button">Validator</a>
+	        <a href="${ctp}/study/transaction/transactionForm" class="w3-bar-item w3-button">트랜젝션</a>
 	        <a href="#" class="w3-bar-item w3-button">스케줄러</a>
 	      </div>
 	    </div>

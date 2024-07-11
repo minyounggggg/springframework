@@ -35,6 +35,7 @@ import com.spring.javaclassS.vo.CrimeVO;
 import com.spring.javaclassS.vo.KakaoAddressVO;
 import com.spring.javaclassS.vo.PetCafeVO;
 import com.spring.javaclassS.vo.QrCodeVO;
+import com.spring.javaclassS.vo.TransactionVO;
 import com.spring.javaclassS.vo.UserVO;
 
 @Service
@@ -568,6 +569,36 @@ public class StudyServiceImpl implements StudyService {
 	@Override
 	public List<ChartVO> getRecentlyVisitCount(int i) {
 		return studyDAO.getRecentlyVisitCount(i);
+	}
+
+	@Override
+	public List<TransactionVO> getTransactionList() {
+		return studyDAO.getTransactionList();
+	}
+
+	@Override
+	public int setTransactionUesrInput(TransactionVO vo) {
+		return studyDAO.setTransactionUesrInput(vo);
+	}
+
+	@Override
+	public List<TransactionVO> getTransactionList2() {
+		return studyDAO.getTransactionList2();
+	}
+
+	@Override
+	public void setTransactionUser1Input(TransactionVO vo) {
+		studyDAO.setTransactionUser1Input(vo);
+	}
+
+	@Override
+	public void setTransactionUser2Input(TransactionVO vo) {
+		studyDAO.setTransactionUser2Input(vo);
+	}
+
+	@Override
+	public void setTransactionUserTotalInput(TransactionVO vo) {
+		studyDAO.setTransactionUserTotalInput(vo);
 	}
 
 	
