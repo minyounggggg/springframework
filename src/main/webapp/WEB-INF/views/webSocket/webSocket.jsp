@@ -25,15 +25,15 @@
 		  // 웹 소켓
 		  let ws;
 		
-		  
+		  // 연결버튼을 클릭하면 수행처리된다.
 		  $('#btnConnect').click(function() {
-		  	
+		  	// 처음 접속시에 유저명 확인
 	     	if ($('#user').val().trim() != '') {
-	  	   	ws = new WebSocket(url);
+	  	   	ws = new WebSocket(url);	// 접속 유저라면, 웹소켓에 연결(접속)한다.
 	  	   			
-	  	   	
+	  	   	// 소켓이벤트 매핑처리(웹소켓에 연결되면 onopen 메소드 수행처리)
 	  	   	ws.onopen = function (evt) {
-	  	   		console.log($('#user').val(), '서버 연결 성공');
+	  	   		//console.log($('#user').val(), '서버 연결 성공');
 	  	   		print($('#user').val(), '입장했습니다.');
 	  	   				
 	  	   		
@@ -48,24 +48,24 @@
 		  			$('#msg').focus();
 		  		};
 	        
-		  		
-	  			ws.onmessage = function (evt) {		
-		  			let index = evt.data.indexOf("#", 2);	
-		  			let no = evt.data.substring(0, 1);		
-		  			let user = evt.data.substring(2, index);  
+		  		// 메세지를 보내면 서버에 다녀온 후 () getBasicRemote()sendText()에서 가져온 메세지처리
+	  			ws.onmessage = function (evt) {		// 서버에 넘어온 값이 '2#user명: 메세지'...
+		  			let index = evt.data.indexOf("#", 2);	// 메세지와 색상코드가 있는지 찾고있따.
+		  			let no = evt.data.substring(0, 1);		// 접속자가 1(처음접속자), 2(기존접속자), 3(종료접속자)인지 판별하기위해
+		  			let user = evt.data.substring(2, index);  	// 로그인 사용자의 유저명을 가져언다.
 		  			
 		  			
-		  			if(index == -1) user = evt.data.substring(evt.data.indexOf("#")+1, evt.data.indexOf(":"));	
+		  			if(index == -1) user = evt.data.substring(evt.data.indexOf("#")+1, evt.data.indexOf(":"));	// 색상코드 없이 바로 넘어온 경우	
 		  			let txt = evt.data.substring(evt.data.indexOf(":")+1);			  			
 		  	   				
-		  			if (no == '1') {	
+		  			if (no == '1') {	// 최초 접속자는 print2()메소드 ㅗ호출
 		  				print2(user);
-		  			} else if (no == '2') {	
+		  			} else if (no == '2') {		// 기존접속자들은 채팅중이기에 ptint()에 '유저명','메세지'를 보낸다.
 		  				if (txt != '') print(user, txt);
-		  			} else if (no == '3') {	
+		  			} else if (no == '3') {	 	// 종료 사용자는 print3()를 보낸다.
 		  				print3(user);
 		  			}
-		  			$('#list').scrollTop($('#list').prop('scrollHeight'));	
+		  			$('#list').scrollTop($('#list').prop('scrollHeight'));	 	// 스크롤바를 가장 아래로
 		  		};
 	  	   	
 		  		
@@ -83,7 +83,7 @@
 		  	}
 		  });
 		
-		  
+		  // 로그인 사용 시작 메세지 전송시 처리(유저명, 메세지)
 		  function print(user, txt) {
 		  	let temp = '';
 		  	
@@ -113,7 +113,7 @@
 		  	$('#list').append(temp);	
 		  }
 		  		
-		  		
+		  // 다른 클라이언트 사용자가 처음 접속할 떄 처리		
 		  function print2(user) {
 		  	let temp = '';
 		  	temp += '<div style="margin-bottom:3px;">';
@@ -124,7 +124,7 @@
 		  	$('#list').append(temp);
 		  }
 		
-		  
+		  // 클라이언트가 접속 종료시 처리
 		  function print3(user) {
 		  	let temp = '';
 		  	temp += '<div style="margin-bottom:3px;">';
