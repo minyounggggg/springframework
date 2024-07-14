@@ -255,7 +255,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="birthday">생일</label>
+      <label for="birthday">생일을 작성해주세요</label>
       <input type="date" name="birthday" value="<%=java.time.LocalDate.now() %>" class="form-control"/>
     </div>
     <div class="form-group">
