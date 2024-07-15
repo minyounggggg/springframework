@@ -409,7 +409,7 @@ public class MemberController {
 		
 		// 비밀번호 암호화 (받아온 password 가져와서 passwordEncoder로 암호화 해서 다시 DB password에 저장하기)
 		vo.setPwd(passwordEncoder.encode(vo.getPwd()));
-		
+		System.out.println("vo : " + vo);
 		// 회원 사진 처리(Service객체에서 처리 후 DB에 저장한다.)
 		if(!fName.getOriginalFilename().equals("")) vo.setPhoto(memberService.fileUpload(fName, vo.getMid()));
 		else vo.setPhoto("noimage.jpg");

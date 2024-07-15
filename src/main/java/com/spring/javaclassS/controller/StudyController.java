@@ -1186,61 +1186,58 @@ public class StudyController {
 		//model.addAttribute("vo", vo);
 		return "study/chart2/chart2Form";
 	}
-	
-	// backend체크를 위한 validator 연스밯기 폼
-	@RequestMapping(value = "/validator/validatorForm", method = RequestMethod.GET)
-	public String validatorGet(Model model) {
-		List<TransactionVO> vos = studyService.getTransactionList();
-		
-		model.addAttribute("vos", vos);
-		return "study/validator/validatorForm";
-	}
-	
-	// backend체크를 위한 validator 연스밯기 폼
-	@RequestMapping(value = "/validator/validatorForm", method = RequestMethod.POST)
-	public String validatorPost(TransactionVO vo, BindingResult bindingResult) {
-		if(bindingResult.hasFieldErrors()) {	//hasFieldErrors 참이니?
-			System.out.println("error 발생");
-			System.out.println("에러 : " + bindingResult);
-			return "redirect:/message/backendCheckNo";
-		}
-		
-		int res = studyService.setTransactionUesrInput(vo);
-		
-		if(res != 0) return "redirect:/message/transactionUesrInputOk?tempFlag=validator";
-		else return "redirect:/message/transactionUesrInputNo";
-	}
-
-	// Transaction(트렌젝션)을 위한 연습 폼
-	@RequestMapping(value = "/transaction/transactionForm", method = RequestMethod.GET)
-	public String transactionFormGet(Model model) {
-		List<TransactionVO> vos = studyService.getTransactionList();
-		List<TransactionVO> vos2 = studyService.getTransactionList2();
-		
-		model.addAttribute("vos", vos);
-		model.addAttribute("vos2", vos2);
-		return "study/transaction/transactionForm";
-	}
-	
-	@Transactional
-	@RequestMapping(value = "/transaction/transactionForm", method = RequestMethod.POST)
-	public String transactionFormPost(TransactionVO vo, BindingResult bindingResult) {
-		if(bindingResult.hasFieldErrors()) {
-			System.out.println("에러 : " + bindingResult);
-		}
-		studyService.setTransactionUser1Input(vo);
-		studyService.setTransactionUser2Input(vo);
-		
-		return "redirect:/message/transactionUesrInputOk?tempFlag=transaction";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/transaction/transactionForm", method = RequestMethod.POST)
-	public String transactionForm2Post(TransactionVO vo) {
-		studyService.setTransactionUserTotalInput(vo);
-		
-		return "1";
-	}
-	
-	
+	/*
+	 * // backend체크를 위한 validator 연스밯기 폼
+	 * 
+	 * @RequestMapping(value = "/validator/validatorForm", method =
+	 * RequestMethod.GET) public String validatorGet(Model model) {
+	 * List<TransactionVO> vos = studyService.getTransactionList();
+	 * 
+	 * model.addAttribute("vos", vos); return "study/validator/validatorForm"; }
+	 * 
+	 * // backend체크를 위한 validator 연스밯기 폼
+	 * 
+	 * @RequestMapping(value = "/validator/validatorForm", method =
+	 * RequestMethod.POST) public String validatorPost(TransactionVO vo,
+	 * BindingResult bindingResult) { if(bindingResult.hasFieldErrors()) {
+	 * //hasFieldErrors 참이니? System.out.println("error 발생");
+	 * System.out.println("에러 : " + bindingResult); return
+	 * "redirect:/message/backendCheckNo"; }
+	 * 
+	 * int res = studyService.setTransactionUesrInput(vo);
+	 * 
+	 * if(res != 0) return
+	 * "redirect:/message/transactionUesrInputOk?tempFlag=validator"; else return
+	 * "redirect:/message/transactionUesrInputNo"; }
+	 * 
+	 * // Transaction(트렌젝션)을 위한 연습 폼
+	 * 
+	 * @RequestMapping(value = "/transaction/transactionForm", method =
+	 * RequestMethod.GET) public String transactionFormGet(Model model) {
+	 * List<TransactionVO> vos = studyService.getTransactionList();
+	 * List<TransactionVO> vos2 = studyService.getTransactionList2();
+	 * 
+	 * model.addAttribute("vos", vos); model.addAttribute("vos2", vos2); return
+	 * "study/transaction/transactionForm"; }
+	 * 
+	 * @Transactional
+	 * 
+	 * @RequestMapping(value = "/transaction/transactionForm", method =
+	 * RequestMethod.POST) public String transactionFormPost(TransactionVO vo,
+	 * BindingResult bindingResult) { if(bindingResult.hasFieldErrors()) {
+	 * System.out.println("에러 : " + bindingResult); }
+	 * studyService.setTransactionUser1Input(vo);
+	 * studyService.setTransactionUser2Input(vo);
+	 * 
+	 * return "redirect:/message/transactionUesrInputOk?tempFlag=transaction"; }
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/transaction/transactionForm", method =
+	 * RequestMethod.POST) public String transactionForm2Post(TransactionVO vo) {
+	 * studyService.setTransactionUserTotalInput(vo);
+	 * 
+	 * return "1"; }
+	 * 
+	 */	
 }
