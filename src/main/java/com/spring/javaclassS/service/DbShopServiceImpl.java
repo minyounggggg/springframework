@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaclassS.dao.DbShopDAO;
 import com.spring.javaclassS.vo.DbProductVO;
@@ -82,6 +83,27 @@ public class DbShopServiceImpl implements DbShopService {
 	@Override
 	public int setCategorySubDelete(String categorySubCode) {
 		return dbShopDAO.setCategorySubDelete(categorySubCode);
+	}
+
+	@Override
+	public List<DbProductVO> getCategorySubName(String categoryMainCode, String categoryMiddleCode) {
+		return dbShopDAO.getCategorySubName(categoryMainCode, categoryMiddleCode);
+	}
+
+	@Override
+	public int imgCheckProductInput(MultipartFile file, DbProductVO vo) {
+		return dbShopDAO.imgCheckProductInput(file, vo);
+	}
+
+	@Override
+	public List<DbProductVO> getSubTitle() {
+		return dbShopDAO.getSubTitle();
+	}
+
+	@Override
+	public List<DbProductVO> getDbShopList(String part, String mainPrice) {
+		// TODO Auto-generated method stub
+		return dbShopDAO.getDbShopList(part, mainPrice);
 	}
 	
 }

@@ -17,6 +17,7 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- 폴더는 되도록 얘가 알아서 만들수이도록한다. 여기서 폴더 만들고 서버 끄고 matadata들어가서 확인해보기 -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/js/**" location="/resources/js/" />
@@ -31,6 +32,7 @@
 	<resources mapping="/study/**" location="/resources/data/study/" />
 	<resources mapping="/qrCode/**" location="/resources/data/qrCode/" />
 	<resources mapping="/thumbnail/**" location="/resources/data/thumbnail/" />
+	<resources mapping="/product/**" location="/resources/data/dbShop/product/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

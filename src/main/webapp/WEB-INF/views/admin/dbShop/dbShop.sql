@@ -7,7 +7,6 @@ create table categoryMain(
   primary key(categoryMainCode),
   unique key(categoryMainName)
 );
-drop table categoryMain;
 
 /* 중분류(middle) */
 create table categoryMiddle(
@@ -17,7 +16,6 @@ create table categoryMiddle(
   primary key(categoryMiddleCode),
   foreign key(categoryMainCode) references categoryMain(categoryMainCode)
 );
-drop table categoryMiddle;
 
 /* 소분류(sub) */
 create table categorySub(
@@ -29,7 +27,6 @@ create table categorySub(
   foreign key(categoryMainCode) references categoryMain(categoryMainCode),
   foreign key(categoryMiddleCode) references categoryMiddle(categoryMiddleCode)
 );
-drop table categorySub;
 
 select * from categoryMiddle;
 select * from categoryMiddle 
@@ -53,4 +50,3 @@ create table dbProduct (
   foreign key(categoryMiddleCode) references categoryMiddle(categoryMiddleCode),
   foreign key(categorySubCode) references categorySub(categorySubCode)
 );
-drop table dbProduct;

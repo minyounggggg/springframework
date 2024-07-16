@@ -3,6 +3,7 @@ package com.spring.javaclassS.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaclassS.vo.DbProductVO;
 
@@ -35,5 +36,13 @@ public interface DbShopDAO {
 	public DbProductVO getCategoryProductName(@Param("vo") DbProductVO vo);
 
 	public int setCategorySubDelete(@Param("categorySubCode") String categorySubCode);
+
+	public List<DbProductVO> getCategorySubName(@Param("categoryMainCode") String categoryMainCode, @Param("categoryMiddleCode") String categoryMiddleCode);
+
+	public int imgCheckProductInput(@Param("file") MultipartFile file, @Param("vo") DbProductVO vo);
+
+	public List<DbProductVO> getSubTitle();
+
+	public List<DbProductVO> getDbShopList(@Param("part") String part, @Param("mainPrice") String mainPrice);
 
 }
