@@ -3,8 +3,8 @@ package com.spring.javaclassS.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.javaclassS.vo.DbOptionVO;
 import com.spring.javaclassS.vo.DbProductVO;
 
 public interface DbShopDAO {
@@ -37,12 +37,34 @@ public interface DbShopDAO {
 
 	public int setCategorySubDelete(@Param("categorySubCode") String categorySubCode);
 
-	public List<DbProductVO> getCategorySubName(@Param("categoryMainCode") String categoryMainCode, @Param("categoryMiddleCode") String categoryMiddleCode);
+	public DbProductVO getProductMaxIdx();
 
-	public int imgCheckProductInput(@Param("file") MultipartFile file, @Param("vo") DbProductVO vo);
+	public int setDbProductInput(@Param("vo") DbProductVO vo);
 
 	public List<DbProductVO> getSubTitle();
 
 	public List<DbProductVO> getDbShopList(@Param("part") String part, @Param("mainPrice") String mainPrice);
+
+	public List<DbProductVO> getCategorySubName(@Param("categoryMainCode") String categoryMainCode, @Param("categoryMiddleCode") String categoryMiddleCode);
+
+	public DbProductVO getDbShopProduct(@Param("idx") int idx);
+
+	public List<DbOptionVO> getDbShopOption(@Param("idx") int idx);
+
+	public DbProductVO getProductInfor(@Param("productName") String productName);
+
+	public List<DbOptionVO> getOptionList(@Param("productIdx") int productIdx);
+
+	public List<DbProductVO> getCategoryProductNameAjax(@Param("categoryMainCode") String categoryMainCode, @Param("categoryMiddleCode") String categoryMiddleCode,	@Param("categorySubCode") String categorySubCode);
+
+	public int getOptionSame(@Param("productIdx") int productIdx, @Param("optionName") String optionName);
+
+	public int setDbOptionInput(@Param("vo") DbOptionVO vo);
+
+	public int setOptionDelete(@Param("idx") int idx);
+
+	public DbProductVO getCategoryProductNameOne(@Param("productName") String productName);
+
+	public DbProductVO getCategoryProductNameOneVO(@Param("vo") DbProductVO imsiVO);
 
 }
