@@ -22,8 +22,8 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
 		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
 		{ name: 'styles' },
-		{ name: 'colors' },
-		{ name: 'about' }
+		{ name: 'colors' }
+		//{ name: 'about' }		ck에디터 쓸때 자꾸 빨간에러?박스 나오는거 없애려고 주석처리, 버전정보를 물어보는거였어서
 	];
 
 	// Remove some buttons provided by the standard plugins, which are
