@@ -1,6 +1,8 @@
 package com.spring.javaclassS.common;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -103,6 +105,7 @@ public class JavaclassProvide {
 	}
 	
 	//QR코드 이름 생성
+	// 파일명에 지정된 자리수만큼 난수를 붙여서 새로운 파일명으로 만들어 반환하기
 	public String newNameCreate(int len) {
 		Date today = new Date();	//util 로 올리기 spl아님
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyMMddHHmm");
@@ -110,5 +113,30 @@ public class JavaclassProvide {
 		newName += RandomStringUtils.randomAlphanumeric(len) + "_";		// len변수로 랜덤숫자 길이를 받는다.
 		return newName;
 	}
+	
+	// oriFilePath경로에 있는 파일을 copyFilePath경로로 복사시켜주기.
+	  @SuppressWarnings("unused")
+		public void fileCopyCheck(String oriFilePath, String copyFilePath) {
+	    File oriFile = new File(oriFilePath);
+	    File copyFile = new File(copyFilePath);
+
+	    try {
+	      FileInputStream  fis = new FileInputStream(oriFile);
+	      FileOutputStream fos = new FileOutputStream(copyFile);
+
+	      byte[] buffer = new byte[2048];
+	      int count = 0;
+	      while((count = fis.read(buffer)) != -1) {
+	        fos.write(buffer, 0, count);
+	      }
+	      fos.flush();
+	      fos.close();
+	      fis.close();
+	    } catch (FileNotFoundException e) {
+	      e.printStackTrace();
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	    }
+	  }
 	
 }
