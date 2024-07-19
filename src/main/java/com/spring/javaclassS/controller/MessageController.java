@@ -219,6 +219,10 @@ public class MessageController {
 			model.addAttribute("msg", "저장실패 입력된 자료를 확인해보세요(백앤드체크)");
 			model.addAttribute("url", "/study/validator/validatorForm");
 		}
+		else if(msgFlag.equals("paymentResultOk")) {
+			model.addAttribute("msg", "결재가 성공적으로 완료되었습니다.");
+			model.addAttribute("url", "/dbShop/paymentResultOk");
+		}
 		
 		
 		return "include/message";
